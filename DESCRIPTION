@@ -1,0 +1,19 @@
+Package: iomodelR
+Type: Package
+Title: A package to help perform Leontief input-output analyses 
+Version: 0.9.0
+Author: Jamie McLaughlin
+Maintainer: Jamie McLaughlin <jamie@jmdataservices.co.uk>
+Description: This package has been developed to draw into shorthand the process of executing
+        Leontief input-output (IO) models and subsequent derivative models of similar form
+        such as inoperability input-output models (IIMs) and dynamic inoperability input-output
+        models (DIIMs).
+License: GNU
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.2.3
+Depends:
+        tidyverse,
+        lubridate,
+        readxl,
+        tibble
