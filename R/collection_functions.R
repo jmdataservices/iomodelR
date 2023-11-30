@@ -59,5 +59,52 @@ draw_io_data <- function(
         return(io_list)
 }
 
+degradable_industry_list <- function(
+        io_data
+) {
+        print(io_data$Industries)
+}
 
-
+degrade_industries <- function(
+        io_data,
+        degraded_industry_single_name,
+        degraded_industry_single_shock = 0.1,
+        degraded_industry_dataframe = NULL
+) {
+        if (!hasArg(degraded_industry_single_name) & (!hasArg(degraded_industry_dataframe) | is.null(degraded_industry_dataframe))) {
+                stop("No argument given for degraded industry name(s)")
+        }
+        
+        if (!hasArg(degraded_industry_dataframe) | !is.data.frame(degraded_industry_dataframe)) {
+                if(is.na(match(degraded_industry_single_name, io_data$Industries))) {
+                        stop("Industry provided is not part of IO data")
+                }
+                degradation_vector <- data.frame(
+                        Industry = io_data$Industries,
+                        Degradation_Proportion = rep(0, length(io_data$Industries))
+                ) %>% 
+                        dplyr::mutate(
+                                Degradation_Proportion = ifelse(Industry == degraded_industry_single_name, degraded_industry_single_shock, Degradation_Proportion),
+                                Degradation_Absolute = Degradation_Proportion * io_data$FinalDemand[,1]
+                        )
+                return(degradation_vector)
+        } else {
+                if(!is.data.frame(degraded_industry_dataframe)) {
+                        stop("Argument for of degraded_industry_dataframe is not a data frame object")
+                }
+                tmp_df <- degraded_industry_dataframe
+                colnames(tmp_df) <- c("Industry", "Degradation_Proportion")
+                degradation_vector <- data.frame(
+                        Industry = io_data$Industries
+                ) %>% 
+                        dplyr::left_join(
+                                by = "Industry",
+                                tmp_df
+                        ) %>% 
+                        dplyr::mutate(
+                                Degradation_Proportion = ifelse(is.na(Degradation_Proportion), 0, Degradation_Proportion),
+                                Degradation_Absolute = Degradation_Proportion * io_data$FinalDemand[,1]
+                        )
+                return(degradation_vector)
+        }
+}
