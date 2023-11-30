@@ -1,6 +1,7 @@
-base_collect_structures <- function(
+collect_structures <- function(
         file,
-        range
+        range,
+        numeric = 1
 ) {
         raw_ovr <- readxl::read_excel(
                 path = file,
@@ -9,30 +10,44 @@ base_collect_structures <- function(
                 na = "0"
         )
         
+        if (numeric == 1) {
+                raw_ovr <- raw_ovr %>% 
+                        dplyr::mutate_all(
+                                ~ as.numeric(tidyr::replace_na(.x, 0))
+                        )
+        } else if (numeric == 0) {
+                raw_ovr <- raw_ovr %>% 
+                        dplyr::mutate_all(
+                                ~ tidyr::replace_na(.x, "")
+                        )
+        }
+        
         return(raw_ovr)
 }
 
-base_define_totaloutput <- function(
-        data
+combine_structures <- function(
+        data,
+        column = T
 ) {
-        totaloutput <- data %>% 
-                apply(
-                        MARGIN = 1,
-                        FUN = sum,
-                        na.rm = T
-                ) %>% 
-                tibble::as_tibble()
-        
-        return(totaloutput)
+        if(column == T) {
+                singlecolumn <- data %>% 
+                        apply(
+                                MARGIN = 1,
+                                FUN = sum,
+                                na.rm = T
+                        ) %>% 
+                        tibble::as_tibble()
+                
+                return(singlecolumn)
+        } else if(column == F) {
+                singlerow <- data %>% 
+                        apply(
+                                MARGIN = 2,
+                                FUN = sum,
+                                na.rm = T
+                        ) %>% 
+                        tibble::as_tibble()
+                
+                return(singlerow)
+        }
 }
-
-dat <- base_collect_structures(file = "data/testData.xlsx", range = "E5:HR30")
-
-dat_totaloutput <- base_define_totaloutput(data = dat)
-
-
-
-
-
-
-
