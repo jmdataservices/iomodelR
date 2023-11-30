@@ -2,6 +2,7 @@ rm(list = ls())
 library(magrittr)
 library(tidyr)
 library(stringr)
+library(tidyverse)
 
 source('R/base_functions.R')
 source('R/collection_functions.R')
@@ -22,14 +23,16 @@ io_data <- draw_io_data(
         industries_range = 'D5:D30'
 )
 
-degradation_vector <- c(rep(0, 20), 0.5, rep(0, 5))
+degradable_industry_list(io_data)
+
+degradation_vector <- degrade_industries(io_data, degraded_industry_dataframe = data.frame(Industry = c("Fishing", "Metal Products"), Shock = c(0.2, 0.1)))
 
 dat <- iim(
         totaloutput = io_data$TotalOutput,
         finaldemand = io_data$FinalDemand,
         interindustry = io_data$InterIndustry,
         industrylist = io_data$Industries,
-        degradation = degradation_vector
+        degradation = degradation_vector$Degradation_Proportion
 )
 
 dat
