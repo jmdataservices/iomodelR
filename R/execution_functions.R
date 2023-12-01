@@ -21,12 +21,14 @@ iim <- function(
                 L <- solve(IminusA)
                 
                 if (degradationtype == "Proportion") {
-                        
                         ftilde_degp <- matrix(degradation, nrow = size, ncol = 1, byrow = T)
-                        
+                        ftilde <- finaldemand * ftilde_degp
+                } else if (degradationtype == "Absolute") {
+                        ftilde <- matrix(degradation, nrow = size, ncol = 1, byrow = T)
+                } else {
+                        stop("Inappropriate degradation type provided.")
                 }
                 
-                ftilde <- finaldemand * ftilde_degp
                 Astar <- (xhatneg1 %*% A) %*% xhat
                 fstar <- xhatneg1 %*% (finaldemand - ftilde)
                 IminusAstar <- diag(size) - Astar
@@ -34,10 +36,10 @@ iim <- function(
                 
                 return(
                         data.frame(
-                                `Industry` = industrylist,
-                                `Inoperability` = inoperability[,1],
-                                `Total Output` = totaloutput[,1],
-                                `Total Loss` = inoperability[,1] * totaloutput[,1]
+                                Industry = industrylist,
+                                Inoperability = inoperability[,1],
+                                TotalOutput = totaloutput[,1],
+                                TotalLoss = inoperability[,1] * totaloutput[,1]
                         )
                 )
                 
