@@ -108,3 +108,28 @@ degrade_industries <- function(
                 return(degradation_vector)
         }
 }
+
+stochastic_degradation <- function(
+        degradation,
+        stochastic_modifier = NULL,
+        stochastic_modifier_arg1 = NULL,
+        stochastic_modifier_arg2 = NULL,
+        stochastic_modifier_arg3 = NULL
+) {
+        if (hasArg(stochastic_modifier) & !is.null(stochastic_modifier)) {
+                if (stochastic_modifier == "rnorm") {
+                        
+                }
+        } else {
+                stop("No stochastic modifier has been provided")
+        }
+}
+
+tst <- degrade_industries(
+        io_data,
+        degraded_industry_dataframe = data.frame(c("Fishing","Agriculture"), c(0.1, 0.05))
+)
+
+tst %>% head(10)
+
+tst$Degradation_Proportion
