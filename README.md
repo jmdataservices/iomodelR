@@ -92,6 +92,30 @@ Now, the *io_outcome* object has the inoperability of each industry along with t
 
 # Guidance
 
+The IO data can be consumed and prepared via the **draw_io_data** function.
+
+There are a series of functionality options for different types of IO analysis and approaches:
+
+* **Degradation of Final Demand**
+
+  * **Degradation Vector**
+  
+  The degradation vector is created via the *degrade_industries* function.
+  
+  * **Stochastic Degradation Vector**
+  
+  The degradation vector created by the *degrade_industries* function can be amended to be a more stochastic measure using the *stochastic_degradation* function.
+  
+* **Input-Output Analyses**
+
+  * **Inoperability Input-Output Analysis**
+  
+  The IIM analysis is available via the *iim* function.
+  
+  * **Dynamic Inoperability Input-Output Analysis**
+  
+  The DIIM analysis is available via the *diim* function.
+
 <br>
 <hr>
 <br>
