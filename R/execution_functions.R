@@ -30,7 +30,7 @@ iim <- function(
                 }
                 
                 Astar <- (xhatneg1 %*% A) %*% xhat
-                fstar <- xhatneg1 %*% (finaldemand - ftilde)
+                fstar <- xhatneg1 %*% ftilde
                 IminusAstar <- diag(size) - Astar
                 inoperability <- solve(IminusAstar) %*% fstar
                 
