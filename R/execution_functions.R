@@ -58,7 +58,7 @@ diim <- function(
                 estimated_recoveryduration,
                 estimated_initialinoperability,
                 estimated_finalinoperability,
-                analysisdays
+                analysisperiod
 ) {
         size <- dim(io_data$InterIndustry)[1]
         
@@ -91,7 +91,7 @@ diim <- function(
                 K <- diag(size) * K
                 k <- diag(K)
                 
-                for(looping_i in c(1:analysisdays)) {
+                for(looping_i in c(1:analysisperiod)) {
                         
                         if (looping_i == 1) {
                                 
