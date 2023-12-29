@@ -8,7 +8,7 @@
 
 # Overview
 
-The **ioModellR** package aims to provide a single-package mechanism, driven by the *tidyverse*, to allow users to complete Leontief Input-Output analyses with little to no additional effort in completing the individual steps. In doing so, the package aims to create a superior workflow for more advanced analyses - reducing the burden of complex looping or algorithms that enable more complex analyses.
+The **ioModellR** package aims to provide a single-package mechanism, driven by the *[tidyverse]*(https://www.tidyverse.org/), to allow users to complete Leontief Input-Output analyses with little to no additional effort in completing the individual steps. In doing so, the package aims to create a superior workflow for more advanced analyses - reducing the burden of complex looping or algorithms that enable more complex analyses.
 
 <br>
 <hr>
