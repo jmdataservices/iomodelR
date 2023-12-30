@@ -1,3 +1,10 @@
+#' This function ultimately will collect data from an IO structure
+#' 
+#' @param file The root IO file
+#' @param range The Excel range over which the data are held
+#' @param numeric This determines whether the data are number, automatically set to TRUE/1
+#' @returns A dataframe of data collected from the Excel file
+
 collect_structures <- function(
         file,
         range,
@@ -24,6 +31,12 @@ collect_structures <- function(
         
         return(raw_ovr)
 }
+
+#' This function will combine previously collected data structures to ensure only a single column
+#' 
+#' @param data A dataframe that should be summed together to create a singular vector
+#' @param column A boolean determining whether the data should be aggregated into a single column (or alternatively, row)
+#' @returns A singular column or row of totals, based on the inputs
 
 combine_structures <- function(
         data,

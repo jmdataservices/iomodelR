@@ -119,7 +119,7 @@ stochastic_degradation <- function(
         if (hasArg(stochastic_modifier) & !is.null(stochastic_modifier)) {
                 if (stochastic_modifier == "rnorm" & !is.null(stochastic_modifier_arg1)) {
                         
-                        degradation$Stochastic_Proportion <- rnorm(
+                        degradation$Stochastic_Proportion <- stats::rnorm(
                                 n = length(degradation$Degradation_Proportion),
                                 mean = degradation$Degradation_Proportion,
                                 sd = stochastic_modifier_arg1
@@ -136,12 +136,12 @@ stochastic_degradation <- function(
                         ) * ceiling(degradation$Degradation_Proportion)
                         
                         degradation <- degradation %>% 
-                                mutate(
+                                dplyr::mutate(
                                         Stochastic_Absolute = ifelse(Degradation_Proportion > 0, Degradation_Absolute * (Stochastic_Proportion / Degradation_Proportion), 0.0),
                                         Degradation_Proportion = as.numeric(Stochastic_Proportion),
                                         Degradation_Absolute = as.numeric(Stochastic_Absolute)
                                 ) %>% 
-                                select(
+                                dplyr::select(
                                         Industry,
                                         Degradation_Proportion,
                                         Degradation_Absolute

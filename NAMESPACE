@@ -1,6 +1,7 @@
 exportPattern("^[[:alpha:]]+")
 
 import(tidyverse)
-import(lubridate)
-import(readxl)
-import(tibble)
+importFrom("readxl", "read_excel")
+importFrom("tibble", "as_tibble")
+importFrom("methods", "hasArg")
+importFrom("stats", "rnorm")
