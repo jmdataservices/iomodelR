@@ -1,4 +1,4 @@
-![image](https://github.com/jmdataservices/iomodelR/blob/main/assets/IOModellR-LogoWhite.png)
+![image](https://github.com/jmdataservices/iomodelR/blob/main/inst/assets/IOModellR-LogoWhite.png)
 
 <p align="center">This repo is the home of iomodelR, an IO Modelling package for R. This package aims to simplify the process of performing Leontief Input-Output Analyses and provide a platform from which more complex variations on these analyses can be conducted. Usage instructions and guidance are provided below</p>
 
